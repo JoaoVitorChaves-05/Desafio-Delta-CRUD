@@ -7,7 +7,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 const fetch = require('node-fetch');
-const FormData = require('form-data');
 
 let conn
 
@@ -432,11 +431,6 @@ app.post('/put/categorias', async (req, res) => {
     const {id} = req.body
     const {nome} = req.body
     const {descricao} = req.body
-
-    const formData = new FormData()
-    formData.append('nome', nome)
-    formData.append('id', id)
-    formData.append('descricao', descricao)
 
     await fetch(req.protocol + '://' +req.hostname + ':' + PORT + '/categorias' + '/' + id, {
         method: "PUT",
